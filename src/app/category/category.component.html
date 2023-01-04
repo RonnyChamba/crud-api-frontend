@@ -27,13 +27,18 @@
                         <td>{{item.numberBooks}}</td>
                         <td class="text-end">
 
-                            <button class="btn btn-danger me-2" style="width: 85px" (click) ="deleteCategory(item.ide)" > Delete</button>
+                            <button *ngIf="isAdmin"  class="btn btn-danger me-2" style="width: 85px" (click) ="deleteCategory(item.ide)" > Delete</button>
                             <button class="btn btn-warning" style="width: 85px" (click)="openModalUpdate(item.ide)" > Update</button>
                         </td>
                     </tr>
 
                 </tbody>
             </table>
+
+                <div class="alert">  
+                    <a  style="text-decoration: none;" [routerLink]="['/menu']">Create Book</a>
+                </div>
+
         </div>
 
 

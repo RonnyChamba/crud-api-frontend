@@ -5,7 +5,7 @@
         <div class="col mb-3 d-flex  justify-content-between">
             <h3>List the Books</h3>
 
-            <button class="btn btn-success" (click)="openModal()" >Add Book</button>
+            <button class="btn btn-success" (click)="openModal()">Add Book</button>
 
         </div>
 
@@ -31,13 +31,27 @@
 
                         <td class="text-end">
 
-                            <button class="btn btn-danger me-2" style="width: 85px" (click) ="deleteBook(book.ide)" > Delete</button>
-                            <button class="btn btn-warning" style="width: 85px" (click)="openModalUpdate(book.ide)" > Update</button>
+                            <button  *ngIf="isAdmin"  class="btn btn-danger me-2" style="width: 85px" (click)="deleteBook(book.ide)">
+                                Delete</button>
+                            <button class="btn btn-warning" style="width: 85px" (click)="openModalUpdate(book.ide)">
+                                Update</button>
                         </td>
                     </tr>
 
                 </tbody>
             </table>
+
+
+            <div class="d-flex justify-content-between">
+                <div class="alert">
+                    <a style="text-decoration: none;" [routerLink]="['/category']">Create Category</a>
+                </div>
+
+                <div class="alert" *ngIf="isAdmin">
+                    <a style="text-decoration: none;" [routerLink]="['/register']">Create Account</a>
+                </div>
+            </div>
+
         </div>
 
 

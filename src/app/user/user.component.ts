@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from '../auth/service/token.service';
 import { UserDTO } from '../models/user';
 import { UserService } from '../service/user.service';
 
@@ -11,10 +13,19 @@ export class UserComponent implements OnInit {
 
   userDTO: UserDTO = new UserDTO();
 
+  isLogged = false;
+  isAdmin = false;
 
-  constructor(private userService: UserService) { }
+
+  constructor(private userService: UserService,
+    private tokenService: TokenService,
+    private router: Router) { }
 
   ngOnInit(): void {
+
+    this.isAdmin= this.tokenService.isAdmin();
+
+    this.isLogged = this.tokenService.isLogged();
   }
 
   saveUser() {
@@ -26,7 +37,9 @@ export class UserComponent implements OnInit {
 
       this.userService.saveUser(this.userDTO).subscribe(response =>{
 
-        alert(`User ${response.username} creado con exito`)
+        alert(`User ${response.username} creado con exito`);
+        this.router.navigate(['/login'])
+
 
       }, errorr =>{
         console.log(errorr);

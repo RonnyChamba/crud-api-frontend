@@ -58,7 +58,12 @@ export class ModalCategoryComponent implements OnInit {
 
       else this.saveCategory();
 
-    } else console.log(smsValid);
+    } else  
+    {
+
+      alert(smsValid);
+      console.log(smsValid);
+    }
 
 
 
@@ -70,6 +75,7 @@ export class ModalCategoryComponent implements OnInit {
 
 
       this.ngActiveModal.dismiss();
+      alert("Category saved");
 
     }, error => {
       console.log(error);

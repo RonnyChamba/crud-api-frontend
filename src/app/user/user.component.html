@@ -2,14 +2,14 @@
     
 
     <div class="row justify-content-center mt-3">
-        <form class="col-sm-4 border rounded p-3 " (ngSubmit)="saveUser()">
-            <h3 class="text-center mb-4"> Register User</h3>
+        <form class="col-md-6 border rounded p-3 " (ngSubmit)="saveUser()">
+            <h3 class="text-center mb-4"> Create Account</h3>
 
         
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <input type="email"  placeholder="example@gmail.com" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                 name="username"
                 [(ngModel)] ="userDTO.username">
 
@@ -22,7 +22,7 @@
                 [(ngModel)] ="userDTO.password">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3"  *ngIf="isAdmin && isLogged">
                 <label for="roles" class="form-label">Roles</label>
 
                 <select class="form-select" aria-label="Default select example" id="roles"
@@ -34,8 +34,9 @@
                 </select>
 
             </div>
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Create User</button>
+            <div class="mt-4 d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                <a  *ngIf="!isLogged"  style="text-decoration: none"  [routerLink]="['/login']">Login</a>
             </div>
             
         </form>

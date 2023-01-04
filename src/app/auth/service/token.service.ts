@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -9,11 +10,16 @@ const TOKEN_KEY = 'AuthToken';
 export class TokenService {
 
 
+  public refresh = new Subject<void>();
+
+
   constructor(private router: Router) { }
 
   public setToken(token: string): void {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
+
+    this.refresh.next();
   }
 
   public getToken(): string {
@@ -47,16 +53,23 @@ export class TokenService {
   }
 
   public isAdmin(): boolean {
+    
     if (!this.isLogged()) {
       return false;
     }
 
-    const roles = this.getValuesPayload()['authorities'];
-    return roles.indexOf("ROLE_ADMIN")>=0;
+    const roles = [...this.getValuesPayload()['authorities']];
+
+    return roles.find(autho => autho.authority =='ROLE_ADMIN')
+
+    // return roles.indexOf("ROLE_ADMIN")>=0;
   }
 
   public logOut(): void {
     window.localStorage.clear();
     this.router.navigate(['/login']);
+
+    this.refresh.next();
+
   }
 }

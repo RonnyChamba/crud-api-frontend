@@ -37,6 +37,9 @@ export class AuthInterceptorService implements HttpInterceptor {
         //   intReq = this.addToken(req, data.token);
         //   return next.handle(intReq);
         // }));
+
+        alert("Su sesión ha finalizado, vuelva iniciar sesión");
+        this.tokenService.logOut();
       } 
       else {
         
