@@ -15,6 +15,8 @@ import { ModalBookComponent } from './modals/modal-book/modal-book.component';
 import { ToastrModule } from 'ngx-toastr';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoryComponent } from './category/category.component';
+import { ModalCategoryComponent } from './modals/modal-category/modal-category.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserComponent,
     LoginComponent,
     MenuComponent,
-    ModalBookComponent
+    ModalBookComponent,
+    CategoryComponent,
+    ModalCategoryComponent
   ],
   imports: [
     BrowserModule,

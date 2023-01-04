@@ -1,0 +1,37 @@
+<div class="modal-header">
+
+    <h5 class="modal-title"> {{ideCategoryUpdate? 'Update':'Register New'}}  Category</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="ngActiveModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+
+    <div class="row justify-content-center mt-3">
+        <form class="col-12 border rounded p-3 ">
+
+            <div class="row">
+
+                <div class="mb-3 col-12">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="categoryDTO.name">
+
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="description" class="form-label">Desription</label>
+                    <textarea class="form-control" id="description" name="description"
+                        [(ngModel)]="categoryDTO.description">
+
+
+                        </textarea>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="ngActiveModal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="clickButtonOperation()"> {{ideCategoryUpdate?'Update':'Save'}} Category</button>
+</div>
